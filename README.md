@@ -119,6 +119,18 @@ Output:
 * Personalized Recommendations
 * Movie Poster Integration
 * Deployment to the Cloud
+    
+## Example Output
+
+Input:
+
+```text
+Toy Story
+```
+
+Output: <img width="776" height="794" alt="moviematch_output" src="https://github.com/user-attachments/assets/1d9455ba-8bca-4896-a6ce-721c0dc85c57" />
+
+
 
 ## Author
 

@@ -119,36 +119,3 @@ def recommend_movie(movie_title: str, top_n: int = 10) -> pd.DataFrame:
     recommendations["rating_count"] = movie_stats_df.loc[recommended_indices, "rating_count"].values
     recommendations["average_rating"] = movie_stats_df.loc[recommended_indices, "average_rating"].values
     return recommendations.reset_index(drop=True)
-
-
-def format_recommendations(movie_title: str, recommendations: pd.DataFrame) -> str:
-    """Create a readable recommendation summary."""
-    lines = [f"Top recommendations for '{movie_title}':"]
-    for _, row in recommendations.iterrows():
-        lines.append(
-            f"- {row['title']} (genres: {row['genres']}, score: {row['similarity']:.2f}, "
-            f"avg rating: {row['average_rating']:.2f}, reviews: {int(row['rating_count'])})"
-        )
-    return "\n".join(lines)
-
-
-def main() -> None:
-    print("MovieMatch AI - Smarter Genre + Rating Recommendations")
-    movie_title = input("Enter a movie title: ").strip()
-    if not movie_title:
-        print("No movie title entered. Exiting.")
-        return
-
-    try:
-        recommendations = recommend_movie(movie_title, top_n=10)
-        if recommendations.empty:
-            print("No strong recommendations were found for that title.")
-            return
-        print("\n" + format_recommendations(movie_title, recommendations))
-    except ValueError as error:
-        print(str(error))
-        print("Please try a title that exists in the dataset.")
-
-
-if __name__ == "__main__":
-    main()
